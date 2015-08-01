@@ -1,0 +1,35 @@
+<div class="block-content block-brand">
+
+	<div class="block-title"><strong><?php echo Mage::getStoreConfig('vc_shopbybrands/general/brand_title')?></strong></div>
+	<dd>
+		<ol>
+		<?php
+		$brand = Mage::registry('brand');
+		$collection = $this->getCollection();
+		if ($collection && $collection->getSize() > 0) :
+			foreach ($collection as $item) :
+				if ($brand && $item->getId() == $brand->getId()) continue;
+				
+				$logo = $this->helper('vc_shopbybrands')->getLogo($item);
+				$url = $this->helper('vc_shopbybrands')->getBrandDetailUrl($item);
+			?>
+				<li>
+					<a href="<?php echo $url;?>">
+						<?php
+						if (strlen($logo) > 0) :
+						?>
+							<img src="<?php echo $logo;?>" />
+						<?php
+						endif;
+						?>
+						<span><?php echo $item->getBrand();?></span>
+					</a>
+				</li>
+			<?php
+			endforeach;
+		endif;
+		?>
+		</ol>
+	</dd>
+</dl>	
+</div>

@@ -1,0 +1,17 @@
+<?php
+$brand = $this->getBrandInfo();
+if ($brand) :
+$logo = $this->helper('vc_shopbybrands')->getLogo($brand);
+?>
+<div class="vc_brand_detail">
+	<div><h1><?php echo $brand->getBrand();?></h1></div>
+	<div>
+		<?php if (strlen($logo) > 0) :?>
+		<img src="<?php echo $logo;?>"/>
+		<?php endif;?>
+		<?php echo nl2br($brand->getDescription());?>
+	</div>
+</div>	
+<?php
+endif;
+?>

@@ -1,0 +1,32 @@
+<div class="vc_brand">
+	<div><h1><?php echo Mage::getStoreConfig('vc_shopbybrands/general/brand_title')?></h1></div>
+<?php
+$condition = array();
+if (strlen($this->getShowAtHome()) > 0) :
+	$condition['show_at_home'] = $this->getShowAtHome();
+endif;
+$collection = $this->getCollection($condition);
+if ($collection && $collection->getSize() > 0) :
+	foreach ($collection as $item) :
+		$logo = $this->helper('vc_shopbybrands')->getLogo($item);
+		$url = $this->helper('vc_shopbybrands')->getBrandDetailUrl($item);
+	?>
+		<li>
+			<a href="<?php echo $url;?>">
+				<?php
+				if (strlen($logo) > 0) :
+				?>
+					<img src="<?php echo $logo;?>" />
+				<?php
+				endif;
+				?>
+				
+				<span><?php echo $item->getBrand();?></span>
+			
+			</a>
+		</li>
+	<?php
+	endforeach;
+endif;
+?>
+</div>

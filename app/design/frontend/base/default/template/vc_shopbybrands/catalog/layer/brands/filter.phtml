@@ -1,0 +1,52 @@
+<?php
+/**
+ * Template for filter items block
+ *
+ * @see Mage_Catalog_Block_Layer_Filter
+ */
+?>
+
+<ol>
+<?php 
+$brandAr = $this->helper('vc_shopbybrands')->getBrandsInfor();
+$brandLayout = Mage::getStoreConfig('vc_shopbybrands/layer_navigation/brand_layout') ;
+foreach ($this->getItems() as $_item): 
+	//echo $_item->getValue();
+	$logo = '';
+	if (isset($brandAr[$_item->getValue()])) {
+		$logo = $this->helper('vc_shopbybrands')->getLogo($brandAr[$_item->getValue()]);
+	}
+	
+	if (strlen($logo) > 0) :
+		$img = '<img src="'.$logo.'" style="height:20px;display:inline-block"/>';
+	endif;
+	
+	$str = '';
+	if ($brandLayout == 3) :
+		$str = $img;
+	elseif ($brandLayout == 2) :
+		$str = $_item->getLabel();
+	else :
+		$str = $img.$_item->getLabel();
+	endif;
+	
+?>
+    <li>
+        <?php if ($_item->getCount() > 0): ?>
+            <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>" title="<?php echo $_item->getLabel();?>">
+				<?php echo $str;?>
+                <?php if ($this->shouldDisplayProductCount() && $brandLayout != 3): ?>
+                <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif; ?>
+            </a>
+        <?php else: ?>
+            <span>
+				<?php echo $str;?>
+                <?php if ($this->shouldDisplayProductCount() && $brandLayout != 3): ?>
+                    <span class="count">(<?php echo $_item->getCount() ?>)</span>
+                <?php endif; ?>
+            </span>
+        <?php endif; ?>
+    </li>
+<?php endforeach ?>
+</ol>

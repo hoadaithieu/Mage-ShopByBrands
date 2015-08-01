@@ -1,0 +1,27 @@
+.vc_brand{
+}
+.vc_brand li {
+  display: inline-block;
+  list-style-type: none;
+}
+.vc_brand li span,.vc_brand li img{
+	/*height:100px;*/
+	display:block;
+}
+
+.block-brand li img, .block-brand li span {
+  display: block;
+}
+
+.block-brand{
+}
+
+.block-brand .block-title{
+	border:0px;
+}
+.block-brand li{
+	margin:20px 0px;
+}
+.vc_brand_detail{
+	margin-bottom:20px;
+}

@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <VC_ShopByBrands>
+            <version>1.0.0</version>
+        </VC_ShopByBrands>
+    </modules>
+    <frontend>
+        <routers>
+            <vc_shopbybrands>
+                <use>standard</use>
+                <args>
+                    <module>VC_ShopByBrands</module>
+                    <frontName>brand</frontName>
+                </args>
+            </vc_shopbybrands>
+        </routers>
+        <layout>
+            <updates>
+                <vc_shopbybrands>
+                    <file>vc_shopbybrands.xml</file>
+                </vc_shopbybrands>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<vc_shopbybrands>
+				<use>admin</use>
+				<args>
+					<module>VC_ShopByBrands</module>
+					<frontName>vc_shopbybrands</frontName>
+				</args>
+			</vc_shopbybrands>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<catalog translate="title">
+				<children>
+					<vc_shopbybrands_brands module="vc_shopbybrands">
+						<title>Shop By Brands</title>
+						<sort_order>40</sort_order>
+						<children>
+							<vc_shopbybrands_brands_manage module="vc_shopbybrands">
+								<title>Manage Brands</title>
+								<sort_order>40</sort_order>
+								<action>vc_shopbybrands/adminhtml_brands/index</action>	
+							</vc_shopbybrands_brands_manage>	
+							<vc_shopbybrands_brands_setting module="vc_shopbybrands">
+								<title>Brands Setting</title>
+								<sort_order>45</sort_order>
+								<action>adminhtml/system_config/edit/section/vc_shopbybrands</action>	
+							</vc_shopbybrands_brands_setting>					
+											
+						</children>
+					</vc_shopbybrands_brands>
+				</children>	
+			</catalog>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<catalog>
+							<children>
+					
+								<vc_shopbybrands_brands>
+									<children>
+										<vc_shopbybrands_brands_manage module="vc_shopbybrands">
+											<title>Manage Brands</title>
+											<sort_order>40</sort_order>
+										</vc_shopbybrands_brands_manage>	
+										<vc_shopbybrands_brands_setting module="vc_shopbybrands">
+											<title>Brands Setting</title>
+											<sort_order>45</sort_order>
+										</vc_shopbybrands_brands_setting>														
+									</children>
+								</vc_shopbybrands_brands>
+							</children>
+						</catalog>
+						<system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <vc_shopbybrands>
+                                            <title>VC ShopByBrands Section</title>
+                                        </vc_shopbybrands>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+												
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<vc_shopbybrands>
+					<file>vc_shopbybrands.xml</file>
+				</vc_shopbybrands>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <vc_shopbybrands>
+                <class>VC_ShopByBrands_Model</class>
+                <resourceModel>vc_shopbybrands_resource</resourceModel>
+            </vc_shopbybrands>
+			<vc_shopbybrands_resource>
+                <class>VC_ShopByBrands_Model_Resource</class>
+                <deprecatedNode>vc_shopbybrands_resource_eav_mysql4</deprecatedNode>
+                <entities>
+                    <brands>
+                        <table>vc_shopbybrands</table>
+                    </brands>
+                   										
+				</entities>
+			</vc_shopbybrands_resource>			
+			<!--catalog>
+				<rewrite>
+					<layer_view>VC_ShopByBrands_Model_Catalog_Layer_View</layer_view>
+				</rewrite>
+			</catalog-->
+        </models>	
+		
+		<resources>
+			<vc_shopbybrands_setup>
+				<setup>
+					<module>VC_ShopByBrands</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</vc_shopbybrands_setup>
+			<vc_shopbybrands_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</vc_shopbybrands_write>
+			<vc_shopbybrands_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</vc_shopbybrands_read>
+		</resources>
+				
+        <blocks>
+            <vc_shopbybrands>
+                <class>VC_ShopByBrands_Block</class>
+            </vc_shopbybrands>
+			
+			<catalog>
+				<rewrite>
+					<layer_view>VC_ShopByBrands_Block_Catalog_Layer_View</layer_view>
+				</rewrite>
+			</catalog>
+			
+			<adminhtml>
+				<rewrite>
+					<catalog_product_grid>VC_ShopByBrands_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+				</rewrite>
+			</adminhtml>
+        </blocks>
+	
+        <helpers>
+            <vc_shopbybrands>
+                <class>VC_ShopByBrands_Helper</class>
+            </vc_shopbybrands>
+        </helpers>
+		
+		<events>
+            <controller_front_init_routers>
+                <observers>
+                    <vc_shopbybrands_controller_front_init_routers>
+                        <type>singleton</type>
+                        <class>VC_ShopByBrands_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </vc_shopbybrands_controller_front_init_routers>
+                </observers>
+            </controller_front_init_routers>
+		</events>			
+    </global>
+	
+	<default>
+		<vc_shopbybrands>
+			<general>
+				<enable>1</enable>
+				<router>brand</router>
+				<brand_title>Manufacturers</brand_title>
+				<brand>brand</brand>
+				<image_folder>brands</image_folder>
+				<image_extension_allow>.gif,.png,.jpg,.jpeg</image_extension_allow>
+				<image_width>100</image_width>
+				<image_height>100</image_height>
+			</general>
+			<menu_link>
+				<enable_top>1</enable_top>
+				<enable_footer>1</enable_footer>
+				<title>Shop By Brand</title>
+			</menu_link>
+		</vc_shopbybrands>
+	</default>
+	
+</config>

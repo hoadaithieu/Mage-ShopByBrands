@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout>
+	
+    <vc_shopbybrands_adminhtml_brands_index>
+		<!--update handle="update_vc_shopbybrands_header" /-->
+        <update handle="editor" />
+        <reference name="content">
+            <block type="vc_shopbybrands/adminhtml_brands" name="brands" />
+        </reference>
+    </vc_shopbybrands_adminhtml_brands_index>
+	
+	<vc_shopbybrands_adminhtml_brands_edit>
+		<update handle="editor" />
+		<!--update handle="update_vc_shopbybrands_header" />
+		<update handle="update_vc_shopbybrands_before_end" /-->
+	</vc_shopbybrands_adminhtml_brands_edit>
+
+	<vc_shopbybrands_adminhtml_brands_new>
+		<update handle="editor" />
+		<!--update handle="update_vc_shopbybrands_header" />
+		<update handle="update_vc_shopbybrands_before_end" /-->
+	</vc_shopbybrands_adminhtml_brands_new>
+	
+</layout>
